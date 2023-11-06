@@ -19,15 +19,15 @@ const scene = new THREE.Scene()
 
 // Galaxy
 const parameters = {}
-parameters.count = 1000000
-parameters.size = 0.01
-parameters.radius = 5
+parameters.count = 300000
+parameters.size = 0.004
+parameters.radius = 3
 parameters.branches = 3
-parameters.spin = 1
+parameters.spin = 2.2
 parameters.randomness = 0.2
-parameters.randomnessPower = 3
-parameters.insideColor = '#ff6030'
-parameters.outsideColor = '#1b3984'
+parameters.randomnessPower = 4
+parameters.insideColor = '#ff432e'
+parameters.outsideColor = '#301178'
 
 let geometry = null
 let material = null
@@ -48,48 +48,6 @@ const generateGalaxy = () => {
   
   const colorInside = new THREE.Color(parameters.insideColor)
   const colorOutside = new THREE.Color(parameters.outsideColor)
-   
-  for (let i = 0; i < parameters.count; i++) {
-    const i3 = i * 3
-    const radius = Math.random() * parameters.radius
-    positions[i3    ] = radius
-    positions[i3 + 1] = 0
-    positions[i3 + 2] = 0
-  }
-  
-  //Straight Line
-  for(let i = 0; i < parameters.count; i++) {
-    const i3 = i * 3
-    const radius = Math.random() * parameters.radius
-    positions[i3    ] = radius
-    positions[i3 + 1] = 0
-    positions[i3 + 2] = 0
-  }
-  
-  
-  //Branches  
-  for(let i = 0; i < parameters.count; i++){
-      const i3 = i * 3
-      const radius = Math.random() * parameters.radius
-      const branchAngle = (i % parameters.branches) / parameters.branches * Math.PI * 2
-   
-      positions[i3    ] = Math.cos(branchAngle) * radius
-      positions[i3 + 1] = 0
-      positions[i3 + 2] = Math.sin(branchAngle) * radius
-  }
-  
-  //Spin
-  for(let i = 0; i < parameters.count; i++){
-      const i3 = i * 3
-  
-      const radius = Math.random() * parameters.radius
-      const spinAngle = radius * parameters.spin
-      const branchAngle = (i % parameters.branches) / parameters.branches * Math.PI * 2
-   
-      positions[i3    ] = Math.cos(branchAngle + spinAngle) * radius
-      positions[i3 + 1] = 0
-      positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius
-  }
    
   //Combined Code to Generate Randomness + Mixed Colors
   for(let i = 0; i < parameters.count; i++){
